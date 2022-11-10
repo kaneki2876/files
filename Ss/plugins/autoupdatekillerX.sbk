@@ -1,0 +1,97 @@
+@echo off
+setlocal enabledelayedexpansion
+pushd %~dp0
+chcp 65001 >nul
+set "bgblack=[40m"&set "bgyellow=[43m"&set "black=[30m"&set "red=[31m"&set "green=[32m"&set "yellow=[33m"&set "blue=[34m"&set "magenta=[35m"&set "cyan=[36m"&set "white=[37m"&set "grey=[90m"&set "brightred=[91m"&set "brightgreen=[92m"&set "brightyellow=[93m"&set "brightblue=[94m"&set "brightmagenta=[95m"&set "brightcyan=[96m"&set "brightwhite=[97m"&set "underline=[4m"&set "underlineoff=[24m"&set "bggreen=[102m"&set "bgred=[101m"&set "bgblue=[104m"&set "bgMagenta=[105m"&set "bgcyan=[106m"&set "bgWhite=[107m"&set "COMBINATIONS=[101; 93m"&set "bgdarkblue=[44m"&set "bgdarkred=[41m"&set "dcyan=[36m"
+:green
+set g=!green!
+set gg=!brightgreen!
+set bg.g=!bggreen!
+
+:red
+set rr=!brightred!
+set r=!red!
+set bg.r=!bgred!
+set bg.dr=!bgdarkred!
+
+:blue
+set c=!cyan!
+set cc=!brightcyan!
+set bg.c=!bgcyan!
+set dc=!dcyan!
+set bbb=!blue
+set bb=!brightblue!
+set bg.bb=!bgblue!
+set bg.db=!bgdarkblue!
+
+:yellow
+set bg.y=!bgyellow!
+set y=!yellow!
+set yy=!brightyellow!
+
+:purple
+set p=!magenta!
+set pp=!brightmagenta!
+set bg.p=!bgMagenta!
+
+:white
+set w=!white!
+set ww=!brightwhite!
+set bg.w=!bgWhite!
+
+:black
+set bg.b=!bgblack!
+set b=!black!
+
+:grey
+set g=!grey!
+
+:font
+set f.u=!underline!
+set f.fo=!underlineoff!
+
+:colors
+set c.c=!COMBINATIONS!
+
+:start
+curl -L -O https://raw.githubusercontent.com/kaneki2876/killerX/main/upkillerX.txt
+cls
+set se=2
+echo %rr%
+call :progress 0
+ping -n %se% 127.0.0.1 >nul
+curl -L -O https://raw.githubusercontent.com/kaneki2876/killerX/main/upversion.bat
+echo %y%
+call :progress 40
+call upversion.bat
+ping -n %se% 127.0.0.1 >nul
+echo %p%
+call :progress 80
+ping -n %se% 127.0.0.1 >nul
+echo install new verison
+tar -xf main.zip
+curl -L -O https://raw.githubusercontent.com/kaneki2876/killerX/main/upkillerX.txt
+echo %pp%
+call :progress 90
+ping -n %se% 127.0.0.1 >nul
+echo delete winrar file
+del main.zip
+echo %gg%
+call :progress 100
+ping -n %se% 127.0.0.1 >nul
+echo updating finished
+cd killerX-main
+start /b start.bat
+exit
+
+:progress
+SETLOCAL ENABLEDELAYEDEXPANSION
+SET ProgressPercent=%1
+SET /A NumBars=%ProgressPercent%/2
+SET /A NumSpaces=50-%NumBars%
+SET Meter=
+FOR /L %%A IN (%NumBars%,-1,1) DO SET Meter=!Meter!I
+FOR /L %%A IN (%NumSpaces%,-1,1) DO SET Meter=!Meter! 
+TITLE Progress:  [%Meter%]  %ProgressPercent%%%
+echo Progress:  [%Meter%]  %ProgressPercent%%%
+ENDLOCAL
